@@ -1,0 +1,55 @@
+    {% extends "base.html" %}
+
+    {% block cuerpo %}
+
+    <div class="row"><!--fila en editar-->
+        <div class="col-md-4 offset-md-4">
+            <h2>Editar Cliente</h2>
+            <!--Aqui codigo tarjeta-->
+            <div class="card"><!-- La tarjeta --> 
+                <div class="card-body">
+                <form action="/editarCliente/" method="POST"> {% csrf_token %}<!-- falta action --> 
+                    <div class="form-group">
+                    <input type="text" id="txtidcliente" name="txtidcliente" class="form-control"
+                    value="{{misclientes.id_cliente}}" 
+                    minlenght="1" maxlenght="6" readonly required>
+                    </div>
+                    <div class="form-group py-3">
+                    <input type="text" id="txtnombres" name="txtnombres" class="form-control" 
+                    value="{{misclientes.Nombres}}" maxlenght="50"  required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtapelli" name="txtapelli" class="form-control" 
+                        value="{{misclientes.Apellidos}}" maxlenght="50" required>
+                        </div>
+                        <div class="form-group py-3">
+                            <input type="text" id="txtdireccion" name="txtdireccion" class="form-control" 
+                            value="{{misclientes.Direccion}}" maxlenght="50" required>
+                            </div>
+                            <div class="form-group py-3">
+                                <input type="text" id="txtnumpasa" name="txtnumpasa" class="form-control" 
+                                value="{{misclientes.Numpasaporte}}" maxlenght="50" required>
+                                </div>
+                                <div class="form-group py-3">
+                                    <input type="text" id="txtnumtel" name="txtnumtel" class="form-control" 
+                                    value="{{misclientes.Numtelefono}}" maxlenght="50"  required>
+                                    </div>
+                                    <div class="form-group py-3">
+                                        <input type="text" id="txtcorreo" name="txtcorreo" class="form-control" 
+                                        value="{{misclientes.Correo}}" maxlenght="50" required>
+                                        </div>
+
+                    <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+                    </div>
+            
+            
+                </form>
+                </div>
+            </div><!-- La tarjeta --> 
+            <!--Aqui codigo tarjeta-->
+        </div>
+
+    </div><!--fila en editar-->
+
+    {% endblock  %}

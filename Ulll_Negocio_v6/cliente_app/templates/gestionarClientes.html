@@ -1,0 +1,91 @@
+    {% extends "base.html" %}
+
+
+    {% block cuerpo %}
+
+    <div class="row"><!-- la fila -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!-- columna izquierda -->
+
+    <h1> Viaje</h1>
+    <div class="card"><!-- La tarjeta --> 
+    <div class="card-body">
+        <form action="registrarCliente/" method="POST"> {% csrf_token %}<!-- falta action --> 
+        <div class="form-group">
+            <input type="text" id="txtidcliente" name="txtidcliente" class="form-control" 
+            placeholder="Id Cliente" minlenght="1" maxlenght="6" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txtnombres" name="txtnombres" class="form-control" 
+            placeholder="Nombres del cliente" maxlenght="100" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txtapellidos" name="txtapellidos" class="form-control" 
+            placeholder="Apellidos del cliente" maxlenght="50" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txtdireccion" name="txtdireccion" class="form-control" 
+            placeholder="Direccion del cliente" maxlenght="50" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txtnumpasa" name="txtnumpasa" class="form-control" 
+            placeholder="Num. Pasaporte del Cliente" maxlenght="50" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txtnumtel" name="txtnumtel" class="form-control" 
+            placeholder="Num. de Telefono del Cliente" maxlenght="50" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="text" id="txtcorreo" name="txtcorreo" class="form-control" 
+            placeholder="Correo del Cliente" maxlenght="50" required>
+        </div>
+        <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+        </div>
+
+
+        </form>
+    </div>
+    </div><!-- La tarjeta --> 
+
+    </div><!-- columna izquierda --> 
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--columna derecha-->
+        <h1> 
+            Listado de Clientes
+        </h1>
+        <!--  la tabla   -->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Id Cliente</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Num. Pasaporte</th>
+                    <th scope="col">Num. Telefono</th>
+                    <th scope="col">Correo</th>
+                    <th> Opciones </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for m in misclientes %}
+                <tr>
+                    <td> {{forloop.counter}} </td>
+                    <td> {{m.id_cliente}} </td>
+                    <td> {{m.Nombres}} </td>
+                    <td> {{m.Apellidos}} </td>
+                    <td> {{m.Direccion}} </td>
+                    <td> {{m.Numpasaporte}} </td>
+                    <td> {{m.Numerotelefono}} </td>
+                    <td> {{m.Correo}} </td>
+                    <td> <a href="seleccionarCliente/{{m.id_cliente}}" class="btn btn-info" >Editar</a></td><!--Falta-->
+                    <td> <a href="borrarCliente/{{m.id_cliente}}" class="btn btn-danger" >Borrar</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <!--  la tabla   -->
+        <div><!--columna derecha-->
+        </div><!-- la fila -->
+    {% endblock %}

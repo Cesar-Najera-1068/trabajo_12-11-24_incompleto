@@ -1,0 +1,55 @@
+    {% extends "base.html" %}
+
+    {% block cuerpo %}
+
+    <div class="row"><!--fila en editar-->
+        <div class="col-md-4 offset-md-4">
+            <h2>Editar Viaje</h2>
+            <!--Aqui codigo tarjeta-->
+            <div class="card"><!-- La tarjeta --> 
+                <div class="card-body">
+                <form action="/editarViaje/" method="POST"> {% csrf_token %}<!-- falta action --> 
+                    <div class="form-group">
+                    <input type="text" id="txtidviaje" name="txtidviaje" class="form-control"
+                    value="{{misviajes.id_viaje}}" 
+                    minlenght="1" maxlenght="6" readonly required>
+                    </div>
+                    <div class="form-group py-3">
+                    <input type="text" id="txtorigen" name="txtorigen" class="form-control" 
+                    value="{{misviajes.Origen}}" maxlenght="50"  required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtdestino" name="txtdestino" class="form-control" 
+                        value="{{misviajes.Destino}}" maxlenght="50" required>
+                        </div>
+                        <div class="form-group py-3">
+                            <input type="text" id="txthorario" name="txthorario" class="form-control" 
+                            value="{{misviajes.Horario}}" maxlenght="50" required>
+                            </div>
+                            <div class="form-group py-3">
+                                <input type="text" id="txtdistancia" name="txtdistancia" class="form-control" 
+                                value="{{misviajes.Distancia}}" maxlenght="50" required>
+                                </div>
+                                <div class="form-group py-3">
+                                    <input type="text" id="txtparadas" name="txtparadas" class="form-control" 
+                                    value="{{misviajes.Paradas_Continuas}}" maxlenght="50"  required>
+                                    </div>
+                                    <div class="form-group py-3">
+                                        <input type="text" id="txtcosto" name="txtcosto" class="form-control" 
+                                        value="{{misviajes.Costo}}" maxlenght="50" required>
+                                        </div>
+
+                    <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar Viaje</button>
+                    </div>
+            
+            
+                </form>
+                </div>
+            </div><!-- La tarjeta --> 
+            <!--Aqui codigo tarjeta-->
+        </div>
+
+    </div><!--fila en editar-->
+
+    {% endblock  %}

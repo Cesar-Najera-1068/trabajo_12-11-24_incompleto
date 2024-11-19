@@ -1,0 +1,91 @@
+    {% extends "base.html" %}
+
+
+    {% block cuerpo %}
+
+    <div class="row"><!-- la fila -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!-- columna izquierda -->
+
+    <h1> Viaje</h1>
+    <div class="card"><!-- La tarjeta --> 
+    <div class="card-body">
+        <form action="registrarViaje/" method="POST"> {% csrf_token %}<!-- falta action --> 
+        <div class="form-group">
+            <input type="text" id="txtidviaje" name="txtidviaje" class="form-control" 
+            placeholder="Id Viaje" minlenght="1" maxlenght="6" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txtorigen" name="txtorigen" class="form-control" 
+            placeholder="Origen del viaje" maxlenght="100" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txtdestino" name="txtdestino" class="form-control" 
+            placeholder="Destino del viaje" maxlenght="50" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txxhorario" name="txthorario" class="form-control" 
+            placeholder="Horario" maxlenght="50" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txtdistancia" name="txtdistancia" class="form-control" 
+            placeholder="Distancia del viaje" maxlenght="50" required>
+        </div>
+        <div class="form-group py-3">
+            <input type="text" id="txtparadas" name="txtparadas" class="form-control" 
+            placeholder="Paradas continuas del viaje" maxlenght="50" required>
+        </div>
+        <div class="form-group py-2">
+            <input type="text" id="txtcosto" name="txtcosto" class="form-control" 
+            placeholder="Costo del viaje" maxlenght="50" required>
+        </div>
+        <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Viaje</button>
+        </div>
+
+
+        </form>
+    </div>
+    </div><!-- La tarjeta --> 
+
+    </div><!-- columna izquierda --> 
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--columna derecha-->
+        <h1> 
+            Listado de viajes
+        </h1>
+        <!--  la tabla   -->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Id Viaje</th>
+                    <th scope="col">Origen</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Horario</th>
+                    <th scope="col">Distancia</th>
+                    <th scope="col">Paradas continuas</th>
+                    <th scope="col">Costo</th>
+                    <th> Opciones </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for m in misviajes %}
+                <tr>
+                    <td> {{forloop.counter}} </td>
+                    <td> {{m.id_viaje}} </td>
+                    <td> {{m.Origen}} </td>
+                    <td> {{m.Destino}} </td>
+                    <td> {{m.Horario}} </td>
+                    <td> {{m.Distancia}} </td>
+                    <td> {{m.Paradas_Continuas}} </td>
+                    <td> {{m.Costo}} </td>
+                    <td> <a href="seleccionarViaje/{{m.id_viaje}}" class="btn btn-info" >Editar</a></td><!--Falta-->
+                    <td> <a href="borrarViaje/{{m.id_viaje}}" class="btn btn-danger" >Borrar</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <!--  la tabla   -->
+        <div><!--columna derecha-->
+        </div><!-- la fila -->
+    {% endblock %}
